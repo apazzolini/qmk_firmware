@@ -37,6 +37,9 @@ enum custom_keycodes {
 #define KC_RSBR MT(MOD_RSFT, KC_RBRC)
 
 #define KC_RTOG RGB_TOG
+#define KC_RMOD RGB_MOD
+#define KC_RHUI RGB_HUI
+#define KC_RSAI RGB_SAI
 #define KC_RVAI RGB_VAI
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -48,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      CTES, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSBR, Z  , X  , C  , V  , B  ,LGUI,     DEL , N  , M  ,COMM,DOT ,SLSH,RSBR,
+     LSFT, Z  , X  , C  , V  , B  ,LGUI,     DEL , N  , M  ,COMM,DOT ,SLSH,RSFT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                        LGUI,LOWR, ENT ,        SPC ,RASE,LALT
   //                  `----+----+----'        `----+----+----'
@@ -86,25 +89,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
          ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,BSLS,PIPE,    ,                   , 7  , 8  , 9  ,    ,    ,
+         ,    ,    ,BSLS,PIPE,LPRN,               RPRN, 7  , 8  , 9  ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,PLUS,EQL ,    ,                   , 4  , 5  , 6  ,    ,    ,
+         ,    ,    ,PLUS,EQL ,LCBR,               RCBR, 4  , 5  , 6  ,DOT ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,    , 1  , 2  , 3  ,    ,    ,
+         ,    ,    ,    ,    ,LBRC,    ,         ,RBRC, 1  , 2  , 3  , 0  ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,               , 0  , DOT
+                           ,    ,    ,               ,    ,
   //                  `----+----+----'          `----+----+----'
   ),
 
   [_RAISE] = LAYOUT_kc(
    //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-          ,QWER,WIND,GAME,    ,    ,                   ,    ,    ,    ,    , RST,
+          ,QWER,WIND,GAME,    ,    ,               RTOG,RMOD,RHUI,RSAI,RVAI, RST,
    //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-          ,    ,MPRV,VOLU,MNXT,    ,                   ,    ,PBRC,NBRC,    ,    ,
+          ,    ,MPRV,VOLU,MNXT,    ,                   ,    ,PCBR,NCBR,    ,    ,
    //|----+----+----+----+----+----|              |----+----+----+----+----+----|
           ,CTLA,MPLY,VOLD,    ,    ,               LEFT,DOWN, UP,RIGHT,    ,    ,
    //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-          ,CTLZ,    ,MUTE,    ,    ,    ,         ,    ,    ,PCBR,NCBR,    ,    ,
+          ,CTLZ,    ,MUTE,    ,    ,    ,         ,    ,    ,PBRC,NBRC,    ,    ,
    //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                             ,    ,    ,             ,    ,
    //                  `----+----+----'        `----+----+----'
@@ -122,29 +125,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         layer_off(_GAMING);
         layer_off(_WINDOWS);
-        rgblight_enable_noeeprom();
-        rgblight_sethsv_noeeprom(HSV_SPRINGGREEN);
-        wait_ms(500);
-        rgblight_disable_noeeprom();
+        /* rgblight_enable_noeeprom(); */
+        /* rgblight_sethsv_noeeprom(HSV_SPRINGGREEN); */
+        /* wait_ms(500); */
+        /* rgblight_disable_noeeprom(); */
       }
       return false;
     case WINDOWS:
       if (record->event.pressed) {
         layer_on(_WINDOWS);
         layer_off(_GAMING);
-        rgblight_enable_noeeprom();
-        rgblight_sethsv_noeeprom(HSV_PURPLE);
-        wait_ms(500);
-        rgblight_disable_noeeprom();
+        /* rgblight_enable_noeeprom(); */
+        /* rgblight_sethsv_noeeprom(HSV_PURPLE); */
+        /* wait_ms(500); */
+        /* rgblight_disable_noeeprom(); */
       }
       return false;
     case GAMING:
       if (record->event.pressed) {
         layer_on(_GAMING);
-        rgblight_enable_noeeprom();
-        rgblight_sethsv_noeeprom(HSV_AZURE);
-        wait_ms(500);
-        rgblight_disable_noeeprom();
+        /* rgblight_enable_noeeprom(); */
+        /* rgblight_sethsv_noeeprom(HSV_AZURE); */
+        /* wait_ms(500); */
+        /* rgblight_disable_noeeprom(); */
       }
       return false;
   }
