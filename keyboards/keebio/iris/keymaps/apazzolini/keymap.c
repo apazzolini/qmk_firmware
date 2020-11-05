@@ -33,8 +33,6 @@ enum custom_keycodes {
 #define KC_NBRC LGUI(KC_RBRC)
 #define KC_CTLA LCTL(KC_A)
 #define KC_CTLZ LCTL(KC_Z)
-#define KC_LSBR MT(MOD_LSFT, KC_LBRC)
-#define KC_RSBR MT(MOD_RSFT, KC_RBRC)
 
 #define KC_RTOG RGB_TOG
 #define KC_RMOD RGB_MOD
@@ -87,13 +85,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+     F12 , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 , F10, F11,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,BSLS,PIPE,LPRN,               RPRN, 7  , 8  , 9  ,    ,    ,
+         ,    ,    ,BSLS,PIPE,LPRN,               RPRN, 6  , 8  , 9  ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,PLUS,EQL ,LCBR,               RCBR, 4  , 5  , 6  ,DOT ,    ,
+         ,    ,    ,PLUS,EQL ,LCBR,               RCBR, 4  , 5  , 6  , 0  ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,LBRC,    ,         ,RBRC, 1  , 2  , 3  , 0  ,    ,
+         ,    ,    ,    ,    ,LBRC,    ,         ,RBRC, 1  , 2  , 3  ,DOT ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,    ,               ,    ,
   //                  `----+----+----'          `----+----+----'
