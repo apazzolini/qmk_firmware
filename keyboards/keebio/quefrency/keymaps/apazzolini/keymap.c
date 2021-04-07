@@ -35,6 +35,8 @@ enum custom_keycodes {
 #define KC_NOTE LALT(KC_I)
 #define KC_MSPC LGUI(KC_SPC)
 #define KC_TERM LCTL(LSFT(KC_A))
+#define KC_WVDP LGUI(LCTL(KC_LEFT))
+#define KC_WVDN LGUI(LCTL(KC_RGHT))
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -65,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_META] = LAYOUT_65(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, _______,  _______,
-    _______,  _______,  _______,  KC_BSLS,  KC_PIPE,  KC_AMPR,  _______,  _______,  KC_PCBR,  KC_NCBR,  KC_NOTE,  KC_PBRC,  KC_NBRC,  _______,           _______,
+    _______,  _______,  _______,  KC_BSLS,  KC_PIPE,  KC_AMPR,  KC_WVDP,  KC_WVDN,  KC_PCBR,  KC_NCBR,  KC_NOTE,  KC_PBRC,  KC_NBRC,  _______,           _______,
     _______,  KC_TERM,  _______,  KC_PLUS,  KC_EQL,   KC_UNDS,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,            _______,           KC_HOME,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                     _______,  KC_END,
     _______,  _______,  _______,  _______,  _______,                      _______,  _______,  _______,  _______,  _______,            _______, _______,  _______
