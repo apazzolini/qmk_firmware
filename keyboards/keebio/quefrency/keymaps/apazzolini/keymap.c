@@ -15,6 +15,8 @@ enum custom_keycodes {
     META,
     RAISE,
     KC_USB1,
+    KC_USB2,
+    KC_SUSB,
 };
 
 /* #define KC_QWER QWERTY */
@@ -39,7 +41,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Default layer: http://www.keyboard-layout-editor.com/#/gists/60a262432bb340b37d364a4424f3037b */
     [_QWERTY] = LAYOUT_65(
-        KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSLS,  KC_ESC,   KC_MPLY,
+        KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSLS,  KC_SUSB,  KC_MPLY,
         KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSPC,            KC_DEL,
         KC_CTES,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_PGUP,
         KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,                      KC_UP,    KC_PGDN,
@@ -55,8 +57,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_META] = LAYOUT_65(
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_CMD9,  KC_CMD0,  _______,  _______,  _______, _______,  _______,
-        KC_USB1,  _______,  _______,  KC_BSLS,  KC_PIPE,  KC_AMPR,  KC_WVDP,  KC_WVDN,  KC_PCBR,  KC_NCBR,  _______,  KC_PBRC,  KC_NBRC,  _______,           _______,
+        _______,  KC_USB1,  KC_USB2,  _______,  _______,  _______,  _______,  _______,  _______,  KC_CMD9,  KC_CMD0,  _______,  _______,  _______, _______,  _______,
+        _______,  _______,  _______,  KC_BSLS,  KC_PIPE,  KC_AMPR,  KC_WVDP,  KC_WVDN,  KC_PCBR,  KC_NCBR,  _______,  KC_PBRC,  KC_NBRC,  _______,           _______,
         _______,  _______,  _______,  KC_PLUS,  KC_EQL,   KC_UNDS,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,            _______,           KC_HOME,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                     _______,  KC_END,
         _______,  _______,  _______,  _______,  _______,                      _______,  _______,  _______,  _______,  _______,            _______, _______,  _______
@@ -93,6 +95,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     user_config.is_gaming = 1;
                     eeconfig_update_user(user_config.raw);
                 }
+            }
+            return false;
+        case KC_SUSB:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_BTN3) SS_DELAY(10) SS_TAP(X_BTN3));
+            }
+            return false;
+        case KC_USB1:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_1) SS_DELAY(10) SS_TAP(X_ENT));
+            }
+            return false;
+        case KC_USB2:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_2) SS_DELAY(10) SS_TAP(X_ENT));
             }
             return false;
     }
