@@ -1,6 +1,8 @@
 qmk compile -kb keebio/quefrency/rev6 -km apazzolini
 qmk flash -kb keebio/quefrency/rev6 -km apazzolini
 
+# Old - I did the TODO below on 2026/03/04
+
 DYNAMIC_TAPPING_TERM_ENABLE in the config can be enabled and then
 DT_PRNT,  DT_DOWN,  DT_UP
 can be added as keys to dynamically configure the tap-hold timeout.
