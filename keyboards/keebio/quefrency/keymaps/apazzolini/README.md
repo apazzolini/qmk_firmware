@@ -1,10 +1,21 @@
 qmk compile -kb keebio/quefrency/rev6 -km apazzolini
 qmk flash -kb keebio/quefrency/rev6 -km apazzolini
 
+# 2026-05-18
+
+Updated onto upstream/master, flashed to replacement rev6 left side board.
+Also flashed right side board for consistency. I think everything is working.
+
+Also flashed both rev5 boards with the same keymap but haven't fully tested
+the advanced / custom features.
+
+qmk compile -kb keebio/quefrency/rev5 -km apazzolini
+qmk flash -kb keebio/quefrency/rev5 -km apazzolini
+
 # Old - I did the TODO below on 2026/03/04
 
 DYNAMIC_TAPPING_TERM_ENABLE in the config can be enabled and then
-DT_PRNT,  DT_DOWN,  DT_UP
+DT_PRNT, DT_DOWN, DT_UP
 can be added as keys to dynamically configure the tap-hold timeout.
 
 I think that TAPPING_FORCE_HOLD was replaced by HOLD_ON_OTHER_KEY_PRESS
