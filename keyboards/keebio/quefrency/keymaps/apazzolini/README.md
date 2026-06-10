@@ -1,6 +1,12 @@
 qmk compile -kb keebio/quefrency/rev6 -km apazzolini
 qmk flash -kb keebio/quefrency/rev6 -km apazzolini
 
+# 2026-06-10
+
+The rev5 board's encoder is in reverse from the rev6 one (bought on Amazon).
+Flashing with the reversed mapping, but not committing that change - will
+keep the authoritative mapping the rev6 mapping.
+
 # 2026-05-18
 
 Updated onto upstream/master, flashed to replacement rev6 left side board.
