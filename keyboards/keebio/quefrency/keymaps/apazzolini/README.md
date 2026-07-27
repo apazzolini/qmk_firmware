@@ -1,6 +1,14 @@
 qmk compile -kb keebio/quefrency/rev6 -km apazzolini
 qmk flash -kb keebio/quefrency/rev6 -km apazzolini
 
+qmk compile -kb keebio/quefrency/rev5 -km apazzolini
+qmk flash -kb keebio/quefrency/rev5 -km apazzolini
+
+# 2026-07-27
+
+Updated for deskhop. Flashed both rev5 and rev6 keyboards.
+Committed version is for rev6 board.
+
 # 2026-06-10
 
 The rev5 board's encoder is in reverse from the rev6 one (bought on Amazon).

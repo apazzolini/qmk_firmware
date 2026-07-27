@@ -36,6 +36,7 @@ enum custom_keycodes {
 #define KC_MSPC LALT(KC_SPC)
 #define KC_WVDP LALT(LCTL(KC_LEFT))
 #define KC_WVDN LALT(LCTL(KC_RGHT))
+#define KC_DHTT LCTL(KC_CAPS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Default layer: http://www.keyboard-layout-editor.com/#/gists/60a262432bb340b37d364a4424f3037b */
@@ -56,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_META] = LAYOUT_65(
-        _______,  KC_USB2,  KC_USB1,  _______,  _______,  _______,  _______,  _______,  _______,  KC_CMD9,  KC_CMD0,  _______,  _______,  _______, _______,  _______,
+        _______,  KC_DHTT,  KC_USB1,  _______,  _______,  _______,  _______,  _______,  _______,  KC_CMD9,  KC_CMD0,  _______,  _______,  _______, _______,  _______,
         _______,  _______,  _______,  KC_BSLS,  KC_PIPE,  KC_AMPR,  KC_WVDP,  KC_WVDN,  KC_PCBR,  KC_NCBR,  _______,  KC_PBRC,  KC_NBRC,  _______,           _______,
         _______,  _______,  _______,  KC_PLUS,  KC_EQL,   KC_UNDS,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,            _______,           KC_HOME,
         _______,  _______,  _______,  _______,  _______,  _______,  KC_PGUP,  KC_PGDN,  _______,  _______,  _______,  _______,                     _______,  KC_END,
@@ -66,8 +67,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT_65(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   DB_TOGG,  KC_RST,   UG_TOGG,
         _______,  _______,  KC_MPLY,  KC_VOLU,  _______,  _______,  _______,  _______,  KC_PSCR,  KC_SCRL,  KC_PAUS,  _______,  _______,  KC_SCRL,            UG_SATU,
-        _______,  _______,  KC_MPRV,  KC_VOLD,  KC_MNXT,  _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,            _______,            UG_SATD,
-        _______,  KC_GAME,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  UG_HUED,                      UG_VALU,  UG_HUEU,
+        KC_CAPS,  KC_DHTT,  KC_MPRV,  KC_VOLD,  KC_MNXT,  _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,            _______,            UG_SATD,
+        _______,  KC_GAME,  KC_USB1,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  UG_HUED,                      UG_VALU,  UG_HUEU,
         _______,  _______,  _______,  _______,  _______,                      _______,  _______,  _______,  _______,  _______,            UG_PREV,  UG_VALD,  UG_NEXT
     ),
 };
@@ -98,8 +99,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case KC_USB1:
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_1) SS_DELAY(10) SS_TAP(X_ENT));
+                register_code(KC_RSFT);
+                register_code(KC_LCTL);
+                register_code(KC_G);
+            } else {
+                unregister_code(KC_G);
+                unregister_code(KC_LCTL);
+                unregister_code(KC_RSFT);
             }
+
+            // if (record->event.pressed) {
+            //     SEND_STRING(SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_RCTL) SS_DELAY(10) SS_TAP(X_1) SS_DELAY(10) SS_TAP(X_ENT));
+            // }
+
             return false;
         case KC_USB2:
             if (record->event.pressed) {
@@ -120,9 +132,9 @@ void keyboard_post_init_user(void) {
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (clockwise) {
-        tap_code(KC_VOLU);
-    } else {
         tap_code(KC_VOLD);
+    } else {
+        tap_code(KC_VOLU);
     }
     return false;
 }
